@@ -2,19 +2,21 @@ package com.ergonomic.jpowell.ergokitkat;
 
 
 import android.annotation.SuppressLint;
-        import android.annotation.TargetApi;
+import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Build;
-        import android.os.CountDownTimer;
-        import android.support.v7.app.AppCompatActivity;
-        import android.os.Bundle;
-        import android.view.View;
-        import android.widget.Button;
-        import android.widget.TextView;
-        import android.os.Vibrator;
-        import java.sql.Time;
-        import java.util.concurrent.TimeUnit;
-        import java.lang.Object;
+import android.os.CountDownTimer;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import android.os.Vibrator;
+import java.sql.Time;
+import java.util.concurrent.TimeUnit;
+import java.lang.Object;
 
 
 
@@ -24,6 +26,7 @@ public class ergo_home extends AppCompatActivity {
 
     Button btnStart, btnStop;
     TextView textViewTime;
+    final CounterClass timer = new CounterClass(3600000, 1000);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,9 +37,10 @@ public class ergo_home extends AppCompatActivity {
         btnStop = (Button) findViewById(R.id.btnStop);
         textViewTime = (TextView) findViewById(R.id.textViewTime);
 
+
         textViewTime.setText("01:00:00");
 
-        final CounterClass timer = new CounterClass(3600000, 1000);
+
         btnStart.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -51,10 +55,30 @@ public class ergo_home extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 timer.cancel();
+
             }
         });
+    }
+
+
+    private void stopCounting() {
+
+        timer.cancel();
+    }
+
+    private void startCounting(long totalTime) {
+        final CounterClass timer2 = new CounterClass(totalTime, 1) {
+            public void onTick(long millisUntilFinished) {
+
+            }
+
+            public void onFinish() {
+
+            }
+        };
 
     }
+
 
     @TargetApi(Build.VERSION_CODES.KITKAT)
     @SuppressLint("NewApi")
@@ -64,6 +88,7 @@ public class ergo_home extends AppCompatActivity {
             super(millisInFuture, countDownInterval);
 
         }
+
         @TargetApi(Build.VERSION_CODES.KITKAT)
         @SuppressLint("NewApi")
         @Override
@@ -79,24 +104,25 @@ public class ergo_home extends AppCompatActivity {
 
 
         }
-    //Notify the user that time has ended
-
+        //Notify the user that time has ended
 
 
         @Override
         public void onFinish() {
             textViewTime.setText("Time to move.");
-           Vibrator mVibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-            mVibrator.vibrate(10000);
+            Vibrator mVibrator;
+            mVibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+            mVibrator.vibrate(3000);
 
-
-
-
+            startActivity(new Intent(ergo_home.this, Choice.class));
 
 
         }
     }
 }
-//Show ergo excersises
 
-//Allow user to reset timer or stop it.
+
+
+
+
+

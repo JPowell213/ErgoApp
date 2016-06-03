@@ -1,22 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-package="com.ergonomic.jpowell.ergokitkat" >
-    <uses-permission android:name = "android.permission.VIBRATE" />
+    package="com.ergonomic.jpowell.ergokitkat" >
+
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
-    android:allowBackup="true"
-    android:icon="@mipmap/ic_launcher"
-    android:label="Ergo(Kitkat)"
-    android:supportsRtl="true"
-    android:theme="@style/AppTheme" >
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="Ergo(Kitkat)"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme" >
+        <activity android:name=".ergo_home" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-    <activity android:name=".ergo_home" >
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-    </activity>
-</application>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Ergoexersises"
+            android:label="@string/title_activity_ergoexersises"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".Choice"
+            android:label="@string/title_activity_choice"
+            android:parentActivityName=".ergo_home"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.ergonomic.jpowell.ergokitkat.ergo_home" />
+        </activity>
+        <activity
+            android:name=".WalkInstructions"
+            android:label="Walkinstructions" >
+        </activity>
+        <activity android:name=".Exercises" >
+        </activity>
+        <activity android:name=".Palming" >
+        </activity>
+        <activity android:name=".Executive_stretch" >
+        </activity>
+        <activity android:name=".Side_Neck_Stretch" >
+        </activity>
+        <activity android:name=".Diagonal_Neck_Stretch" >
+        </activity>
+        <activity android:name=".Foot_Rotation" >
+        </activity>
+        <activity android:name=".Completion" >
+        </activity>
+        <activity android:name=".FootRotation" >
+        </activity>
+        <activity android:name=".completion1" >
+        </activity>
+    </application>
 
 </manifest>

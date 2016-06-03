@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Ergo(Kitkat)</string>
+    <string name="title_activity_ergoexersises">Ergoexersises</string>
+    <string name="title_activity_choice">Choice</string>
 </resources>
